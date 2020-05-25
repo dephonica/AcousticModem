@@ -3,6 +3,8 @@
 
  C++ modulation/demodulation algorithms to implement a data transmission channel between "smart" devices using an acoustic channel with an arbitrary, user-defined audio fragment acting as carrier sound.
 
+ ![Infographics for Acoustic Modem](https://github.com/dephonica/AcousticModem/blob/master/images/acoumodem.png)
+
  ## Encoder usage
 
  ### With carrier PCM data in memory:
@@ -15,14 +17,6 @@ ADSSS::Encoder encoder(referenceSource);
 auto resultPcm = encoder.Go(payloadData);
 ```
 
- ### With carrier PCM data in WAV file:
-
-```cpp
-ADSSS::PcmHelpers::WaveReferenceSource referenceSource("reference.wav");
-ADSSS::Encoder encoder(referenceSource);
-auto resultPcm = encoder.Go(payloadData);
-```
-
  ## Decoder usage
 
  ### With encoded PCM data in memory:
@@ -31,14 +25,6 @@ auto resultPcm = encoder.Go(payloadData);
 std::vector<PCMTYPE> encodedPcm;
 // fill encoded vector with PCM data here
 ADSSS::PcmHelpers::ReferenceSource encodedSource(encodedPcmSamplerate, encodedPcm);
-ADSSS::Decoder decoder(encodedSource);
-auto decodedData = decoder.Go();
-```
-
- ### With encoded PCM data in WAV file:
-
-```cpp
-ADSSS::PcmHelpers::WaveReferenceSource encodedSource("encoded.wav");
 ADSSS::Decoder decoder(encodedSource);
 auto decodedData = decoder.Go();
 ```
